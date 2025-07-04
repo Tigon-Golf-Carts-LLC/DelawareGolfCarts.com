@@ -44,7 +44,7 @@ class DelawareGolfCarts {
     document.addEventListener('click', (e) => {
       const mobileMenu = document.querySelector('.mobile-menu');
       const mobileToggle = document.querySelector('.mobile-menu-toggle');
-      
+
       if (mobileMenu && mobileMenu.classList.contains('active') && 
           !mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
         this.closeMobileMenu();
@@ -95,7 +95,7 @@ class DelawareGolfCarts {
   setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    
+
     // Update theme toggle icon
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
@@ -129,7 +129,7 @@ class DelawareGolfCarts {
 
     const mobileMenu = document.createElement('div');
     mobileMenu.className = 'mobile-menu';
-    
+
     const navMenu = document.querySelector('.nav-menu');
     if (navMenu) {
       const mobileNavMenu = navMenu.cloneNode(true);
@@ -150,11 +150,11 @@ class DelawareGolfCarts {
   toggleMobileMenu() {
     const mobileMenu = document.querySelector('.mobile-menu');
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    
+
     if (mobileMenu && mobileToggle) {
       mobileMenu.classList.toggle('active');
       mobileToggle.classList.toggle('active');
-      
+
       // Prevent body scroll when menu is open
       if (mobileMenu.classList.contains('active')) {
         document.body.style.overflow = 'hidden';
@@ -167,7 +167,7 @@ class DelawareGolfCarts {
   closeMobileMenu() {
     const mobileMenu = document.querySelector('.mobile-menu');
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    
+
     if (mobileMenu && mobileToggle) {
       mobileMenu.classList.remove('active');
       mobileToggle.classList.remove('active');
@@ -205,7 +205,7 @@ class DelawareGolfCarts {
       img.src = img.dataset.src;
       img.removeAttribute('data-src');
     }
-    
+
     img.addEventListener('load', () => {
       img.classList.add('loaded');
     });
@@ -259,7 +259,7 @@ class DelawareGolfCarts {
     vehicleCards.forEach(card => {
       const title = card.querySelector('.vehicle-title')?.textContent.toLowerCase() || '';
       const description = card.querySelector('.vehicle-description')?.textContent.toLowerCase() || '';
-      
+
       if (title.includes(term) || description.includes(term) || term === '') {
         card.style.display = '';
         card.classList.add('fade-in');
@@ -274,9 +274,9 @@ class DelawareGolfCarts {
   async registerServiceWorker() {
     if ('serviceWorker' in navigator) {
       try {
-        const registration = await navigator.serviceWorker.register('/sw.js');
+        const registration = await navigator.serviceWorker.register('./sw.js');
         console.log('Service Worker registered successfully:', registration);
-        
+
         // Check for updates
         registration.addEventListener('updatefound', () => {
           const newWorker = registration.installing;
@@ -303,7 +303,7 @@ class DelawareGolfCarts {
         <button onclick="this.parentElement.parentElement.remove()" class="btn btn-secondary btn-sm">Later</button>
       </div>
     `;
-    
+
     notification.style.cssText = `
       position: fixed;
       top: 20px;
@@ -316,9 +316,9 @@ class DelawareGolfCarts {
       z-index: 1003;
       max-width: 300px;
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Auto-remove after 10 seconds
     setTimeout(() => {
       if (notification.parentElement) {
@@ -367,7 +367,7 @@ class DelawareGolfCarts {
 
   showFieldError(input, message) {
     this.clearFieldError(input);
-    
+
     const errorDiv = document.createElement('div');
     errorDiv.className = 'field-error';
     errorDiv.textContent = message;
@@ -376,7 +376,7 @@ class DelawareGolfCarts {
       font-size: 0.875rem;
       margin-top: 0.25rem;
     `;
-    
+
     input.parentNode.appendChild(errorDiv);
     input.style.borderColor = 'var(--danger)';
   }
@@ -443,4 +443,3 @@ if ('performance' in window) {
     }, 0);
   });
 }
-
